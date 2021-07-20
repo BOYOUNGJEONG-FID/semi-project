@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.order">
+	<resultMap type="orderVO" id="orderResult">
+		<result property="orderno" column="orderno" />
+		<result property="orderdate" column="orderdate" />
+		<result property="ordermethod" column="ordermethod" />
+<result property="memberid" column="memberid" />
+		<result property="prodcode" column="prodcode" />
+		<result property="prodname" column="prodname" />
+		<result property="quantity" column="quantity" />
+		<result property="order_group_no" column="order_group_no" />
+	</resultMap>
+	
+	
+	<insert id="insert"   parameterType="orderVO" >
+		<![CDATA[
+			insert into orders(orderno, orderdate,ordermethod,memberid,prodname,quantity,order_group_no) 
+			values(#{orderno}, SYSDATE, #{ordermethod},#{memberid},#{prodname},#{quantity},#{order_group_no})
+		]]>
+	</insert>
+	
+	<select id="order_group_no" resultType="long" >
+		<![CDATA[
+			select order_group_no_seq.nextval from dual
+		]]>
+	</select>	
+	
+	<select id="order_no" resultType="long" >
+		<![CDATA[
+			select order_no_seq.nextval from dual
+		]]>
+	</select>	
+
+</mapper> 
+		
